@@ -1,6 +1,7 @@
 package com.app.employeeapi.serviceImpl;
 
 import com.app.employeeapi.model.Employee;
+import com.app.employeeapi.model.StatData;
 import com.app.employeeapi.repo.EmployeeRepo;
 import com.app.employeeapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(long id) {
-        return this.employeeRepo.findById(id).orElse(null);
+        return this.employeeRepo.findById(id).orElse(new Employee());
     }
 
     @Override
@@ -38,21 +39,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findByTypeContrat(String typeContrat) {
-        return null;
+        return this.findByTypeContrat(typeContrat);
     }
 
     @Override
     public List<Employee> findByEtat(String etat) {
-        return null;
+        return this.employeeRepo.findByEtat(etat);
     }
 
     @Override
     public int countByEtat(String etat) {
-        return 0;
+        return this.employeeRepo.countByEtat(etat);
     }
 
     @Override
     public int countByTypeContrat(String type) {
-        return 0;
+        return this.employeeRepo.countByTypeContrat(type);
+    }
+
+    @Override
+    public StatData statByQteAndMonth() {
+        return null;
     }
 }
